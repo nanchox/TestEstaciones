@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply font-body text-slate-800 antialiased;
+  background: #fff0f7;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bg-shift {
+  background: linear-gradient(120deg, #ffd1e8, #fff3b0, #ffd0a8, #cfe6ff, #ffd1e8);
+  background-size: 400% 400%;
+  animation: shift 16s ease infinite;
+}
+
+@keyframes shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.particle {
+  position: absolute;
+  top: -10vh;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  user-select: none;
+}
+
+@keyframes fall {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(var(--sway), 60vh, 0) rotate(180deg); }
+  100% { transform: translate3d(0, 120vh, 0) rotate(360deg); }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle, .bg-shift { animation: none; }
+  .particle { display: none; }
+}
